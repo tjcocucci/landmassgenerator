@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MapGenerator: MonoBehaviour
 {
+
+    public enum DrawMode {Noise, ColorMap};
+    public DrawMode drawMode;
+
     [Min(1)]
     public int mapWidth;
     [Min(1)]
@@ -16,6 +20,8 @@ public class MapGenerator: MonoBehaviour
     [Min(0)]
     public float persistance;
 
+    public ColorLevel[] colorLevels;
+
     public int seed;
     public Vector2 offsets;
 
@@ -24,7 +30,19 @@ public class MapGenerator: MonoBehaviour
     public void GenerateMap () {
         float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, mapScale, seed, octaves, persistance, lacunarity, offsets);
         MapDisplay mapDisplay = FindObjectOfType<MapDisplay>();
-        mapDisplay.DisplayMap(noiseMap);
+        if (drawMode == DrawMode.Noise) {
+            mapDisplay.DisplayNoiseMap(noiseMap);
+        } else if (drawMode == DrawMode.ColorMap) {
+            mapDisplay.DisplayColorMap(noiseMap, colorLevels);
+        }
+        
     }
 
+}
+
+[System.Serializable]
+public class ColorLevel {
+    public Color color;
+    [Range(0, 1)]
+    public float threshold;
 }
