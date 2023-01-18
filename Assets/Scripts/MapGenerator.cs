@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapGenerator: MonoBehaviour
 {
 
-    public enum DrawMode {Noise, ColorMap};
+    public enum DrawMode {Noise, ColorMap, Mesh};
     public DrawMode drawMode;
 
     [Min(1)]
@@ -19,6 +19,9 @@ public class MapGenerator: MonoBehaviour
     public float lacunarity;
     [Min(0)]
     public float persistance;
+
+    public float heightMultiplier;
+    public AnimationCurve animationCurve;
 
     public ColorLevel[] colorLevels;
 
@@ -34,6 +37,8 @@ public class MapGenerator: MonoBehaviour
             mapDisplay.DisplayNoiseMap(noiseMap);
         } else if (drawMode == DrawMode.ColorMap) {
             mapDisplay.DisplayColorMap(noiseMap, colorLevels);
+        } else if (drawMode == DrawMode.Mesh) {
+            mapDisplay.DisplayMeshColorMap(noiseMap, colorLevels, heightMultiplier, animationCurve);
         }
         
     }
