@@ -8,10 +8,10 @@ public class MapGenerator: MonoBehaviour
     public enum DrawMode {Noise, ColorMap, Mesh};
     public DrawMode drawMode;
 
-    [Min(1)]
-    public int mapWidth;
-    [Min(1)]
-    public int mapHeight;
+    const int chunkSize = 241;
+
+    [Range(0, 6)]
+    public int levelOfDetail;
     public float mapScale;
     [Min(1)]
     public int octaves;
@@ -31,14 +31,14 @@ public class MapGenerator: MonoBehaviour
     public bool autoUpdate;
 
     public void GenerateMap () {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, mapScale, seed, octaves, persistance, lacunarity, offsets);
+        float[,] noiseMap = Noise.GenerateNoiseMap(chunkSize, chunkSize, mapScale, seed, octaves, persistance, lacunarity, offsets);
         MapDisplay mapDisplay = FindObjectOfType<MapDisplay>();
         if (drawMode == DrawMode.Noise) {
             mapDisplay.DisplayNoiseMap(noiseMap);
         } else if (drawMode == DrawMode.ColorMap) {
             mapDisplay.DisplayColorMap(noiseMap, colorLevels);
         } else if (drawMode == DrawMode.Mesh) {
-            mapDisplay.DisplayMeshColorMap(noiseMap, colorLevels, heightMultiplier, animationCurve);
+            mapDisplay.DisplayMeshColorMap(noiseMap, colorLevels, heightMultiplier, animationCurve, levelOfDetail);
         }
         
     }
