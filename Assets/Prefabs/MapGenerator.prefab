@@ -147,6 +147,7 @@ MonoBehaviour:
   seed: 18
   offsets: {x: 81.1, y: -23.1}
   autoUpdate: 1
+  mapDisplay: {fileID: 6212202170347599340}
 --- !u!114 &6212202170347599342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,5 +161,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
-  playerViewDistance: 5
-  chunckSize: 2
+  mapMaterial: {fileID: 2100000, guid: fccbe2c293cb14f468e90ea5d108d7ea, type: 2}
+  playerViewDistance: 700
+  chunckSize: 241

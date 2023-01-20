@@ -4,7 +4,8 @@ using UnityEngine;
 
 public static class MeshGenerator
 {
-    public static MeshData GenerateMeshData(float[,] heightMap, float heightMultiplier, AnimationCurve animationCurve, int levelOfDetail) {
+    public static MeshData GenerateMeshData(float[,] heightMap, float heightMultiplier, AnimationCurve _animationCurve, int levelOfDetail) {
+        AnimationCurve animationCurve = new AnimationCurve(_animationCurve.keys);
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
         float offsetX = (width - 1) / -2f;
@@ -44,14 +45,6 @@ public static class MeshGenerator
         return meshData;
     }
 
-    public static Mesh MeshDataToMesh(MeshData meshData) {
-        Mesh mesh = new Mesh();
-        mesh.vertices = meshData.vertices;
-        mesh.triangles = meshData.triangles;
-        mesh.uv = meshData.uvs;
-        mesh.RecalculateNormals();
-        return mesh;
-    }
 }
 
 public class MeshData {
@@ -64,4 +57,14 @@ public class MeshData {
         triangles = new int[(width-1) * (height-1) * 6];
         uvs = new Vector2[width * height];
     }
+
+    public Mesh CreateMesh() {
+        Mesh mesh = new Mesh();
+        mesh.vertices = vertices;
+        mesh.triangles = triangles;
+        mesh.uv = uvs;
+        mesh.RecalculateNormals();
+        return mesh;
+    }
+
 }

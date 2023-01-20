@@ -5,11 +5,17 @@ using UnityEngine;
 public class EndlessTerrain : MonoBehaviour
 {
     public Transform playerTransform;
-    public float playerViewDistance = 50;
-    public float chunckSize = 5;
+    public Material mapMaterial;
+    public float playerViewDistance = 700;
+    public float chunckSize = 241;
+    static MapGenerator mapGenerator;
 
     Dictionary<Vector2Int, TerrainChunk> terrainDict = new Dictionary<Vector2Int, TerrainChunk>();
     List<Vector2Int> coordsList = new List<Vector2Int> ();
+
+    void Start() {
+        mapGenerator = FindObjectOfType<MapGenerator>();
+    }
 
     void Update() {
         DetectChuncksInSight();
@@ -45,37 +51,57 @@ public class EndlessTerrain : MonoBehaviour
                 if (terrainDict.ContainsKey(chunkCoords)) {
                     terrainDict[chunkCoords].UpdateTerrainChunk(playerTransform.position, playerViewDistance);
                 } else {
-                    terrainDict.Add(chunkCoords, new TerrainChunk(chunkCoords, chunkPosition, new Vector3(chunckSize/10, 0, chunckSize/10), transform));
+                    terrainDict.Add(chunkCoords, new TerrainChunk(chunkCoords, chunkPosition, new Vector3(chunckSize, -1, chunckSize), transform, mapMaterial));
                     terrainDict[chunkCoords].UpdateTerrainChunk(playerTransform.position, playerViewDistance);
                 }
                 coordsList.Add(chunkCoords);
             }
         }
     }
-}
 
-public class TerrainChunk {
-    public Vector2Int chunkCoords;
-    public Vector3 centerPosition;
-    public GameObject plane;
-    Bounds bounds;
+    public class TerrainChunk {
+        public Vector2Int chunkCoords;
+        public Vector3 centerPosition;
+        public GameObject mesh;
+        public MeshFilter meshFilter;
+        public MeshRenderer meshRenderer;
+        Bounds bounds;
 
-    public TerrainChunk (Vector2Int coords, Vector3 position, Vector3 scale, Transform parent) {
-        chunkCoords = coords;
-        centerPosition = position;
-        bounds = new Bounds(position, scale);
-        plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        plane.transform.position = centerPosition;
-        plane.transform.localScale = scale;
-        plane.transform.parent = parent;
-        plane.SetActive(false);
+        public TerrainChunk (Vector2Int coords, Vector3 position, Vector3 scale, Transform parent, Material mapMaterial) {
+            chunkCoords = coords;
+            centerPosition = position;
+            bounds = new Bounds(position, scale);
+            
+            mesh = new GameObject("Terrain Mesh");
+            meshFilter = mesh.AddComponent<MeshFilter> ();
+            meshRenderer = mesh.AddComponent<MeshRenderer> ();
+
+            // meshRenderer.sharedMaterial.SetTexture("_BaseMap", texture);
+            meshRenderer.sharedMaterial = mapMaterial;
+            meshFilter.transform.localScale = scale;
+            mesh.transform.position = centerPosition;
+            mesh.transform.parent = parent;
+            mesh.SetActive(false);
+
+            mapGenerator.RequestMapData(OnMapDataRecieved);
+        }
+
+        void OnMapDataRecieved(MapData mapData) {
+            mapGenerator.RequestMeshData(mapData, OnMeshDataRecieved);
+        }
+
+        void OnMeshDataRecieved(MeshData meshData) {
+            meshFilter.sharedMesh = meshData.CreateMesh();
+        }
+
+
+        public void UpdateTerrainChunk(Vector3 point, float viewDistance) {
+            bool visible = Mathf.Sqrt(bounds.SqrDistance(point)) <= viewDistance;
+            SetVisible(visible);
+        }
+        public void SetVisible(bool visible) {
+            mesh.SetActive(visible);
+        }
     }
 
-    public void UpdateTerrainChunk(Vector3 point, float viewDistance) {
-        bool visible = Mathf.Sqrt(bounds.SqrDistance(point)) <= viewDistance;
-        SetVisible(visible);
-    }
-    public void SetVisible(bool visible) {
-        plane.SetActive(visible);
-    }
 }
