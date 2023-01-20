@@ -28,8 +28,8 @@ public class EndlessTerrain : MonoBehaviour
     }
 
     Vector3 CoordToPosition(Vector2Int coords) {
-        float positionX = coords.x * chunckSize;
-        float positionY = coords.y * chunckSize;
+        float positionX = coords.x * (chunckSize-1);
+        float positionY = coords.y * (chunckSize-1);
         return new Vector3(positionX, 0, positionY);
     }
 
@@ -51,7 +51,7 @@ public class EndlessTerrain : MonoBehaviour
                 if (terrainDict.ContainsKey(chunkCoords)) {
                     terrainDict[chunkCoords].UpdateTerrainChunk(playerTransform.position, playerViewDistance);
                 } else {
-                    terrainDict.Add(chunkCoords, new TerrainChunk(chunkCoords, chunkPosition, new Vector3(chunckSize, -1, chunckSize), transform, mapMaterial));
+                    terrainDict.Add(chunkCoords, new TerrainChunk(chunkCoords, chunkPosition, new Vector3(1, -1, 1), transform, mapMaterial));
                     terrainDict[chunkCoords].UpdateTerrainChunk(playerTransform.position, playerViewDistance);
                 }
                 coordsList.Add(chunkCoords);
@@ -76,7 +76,6 @@ public class EndlessTerrain : MonoBehaviour
             meshFilter = mesh.AddComponent<MeshFilter> ();
             meshRenderer = mesh.AddComponent<MeshRenderer> ();
 
-            // meshRenderer.sharedMaterial.SetTexture("_BaseMap", texture);
             meshRenderer.sharedMaterial = mapMaterial;
             meshFilter.transform.localScale = scale;
             mesh.transform.position = centerPosition;

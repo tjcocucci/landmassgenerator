@@ -10,13 +10,13 @@ public class MapDisplay : MonoBehaviour
 
     public void SetTexture(int width, int height, Texture texture) {
         renderTexture.sharedMaterial.SetTexture("_BaseMap", texture);
-        renderTexture.transform.localScale = new Vector3(width, 1, height);
+        renderTexture.transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void SetMesh(int width, int height, Texture texture, Mesh mesh) {
         meshRenderer.sharedMaterial.SetTexture("_BaseMap", texture);
         meshFilter.sharedMesh = mesh;
-        meshFilter.transform.localScale = new Vector3(width, -1, height);
+        meshFilter.transform.localScale = new Vector3(1, -1, 1);
     }
 
 }
