@@ -31,18 +31,39 @@ public class MapGenerator: MonoBehaviour
     public bool autoUpdate;
 
     public void GenerateMap () {
-        float[,] noiseMap = Noise.GenerateNoiseMap(chunkSize, chunkSize, mapScale, seed, octaves, persistance, lacunarity, offsets);
         MapDisplay mapDisplay = FindObjectOfType<MapDisplay>();
-        if (drawMode == DrawMode.Noise) {
-            mapDisplay.DisplayNoiseMap(noiseMap);
-        } else if (drawMode == DrawMode.ColorMap) {
-            mapDisplay.DisplayColorMap(noiseMap, colorLevels);
-        } else if (drawMode == DrawMode.Mesh) {
-            mapDisplay.DisplayMeshColorMap(noiseMap, colorLevels, heightMultiplier, animationCurve, levelOfDetail);
-        }
-        
+        float[,] noiseMap = Noise.GenerateNoiseMap(chunkSize, chunkSize, mapScale, seed, octaves, persistance, lacunarity, offsets);
+        Color[] colorMap = mapDisplay.GenerateColorMap(noiseMap, colorLevels, drawMode);
+        DisplayMap(noiseMap, colorMap);
     }
 
+    public void DisplayMap(float[,] noiseMap, Color[] colorMap) {
+        MapDisplay mapDisplay = FindObjectOfType<MapDisplay>();
+
+        int width = noiseMap.GetLength(0);
+        int height = noiseMap.GetLength(1);
+
+        Texture texture = TextureGenerator.TextureFromColorMap (colorMap, width, height);
+
+        if (drawMode == DrawMode.Noise || drawMode == DrawMode.ColorMap) {
+            mapDisplay.SetTexture(width, height, texture);
+        } else if (drawMode == DrawMode.Mesh) {
+            MeshData meshData = MeshGenerator.GenerateMeshData(noiseMap, heightMultiplier, animationCurve, levelOfDetail);
+            Mesh mesh = MeshGenerator.MeshDataToMesh(meshData);
+            mapDisplay.SetMesh(width, height, texture, mesh);
+        }
+    }
+
+    public void RequestMapData(System.Action<MapData> callback) {
+
+    }
+
+}
+
+public struct MapData {
+    public readonly float[,] noiseMap;
+    public readonly Color[] colorMap;
+    
 }
 
 [System.Serializable]

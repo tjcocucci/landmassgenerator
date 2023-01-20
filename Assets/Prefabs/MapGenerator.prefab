@@ -1,0 +1,164 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6212202170347599330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6212202170347599341}
+  - component: {fileID: 6212202170347599340}
+  - component: {fileID: 6212202170347599343}
+  - component: {fileID: 6212202170347599342}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6212202170347599341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212202170347599330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6212202170347599340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212202170347599330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995eb89c753a6194982f14a508961486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderTexture: {fileID: 0}
+  meshFilter: {fileID: 0}
+  meshRenderer: {fileID: 0}
+--- !u!114 &6212202170347599343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212202170347599330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aed702af02191644b3a7a44af65d2b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawMode: 1
+  levelOfDetail: 1
+  mapScale: 44.7
+  octaves: 4
+  lacunarity: 3.6
+  persistance: 0.2
+  heightMultiplier: 15000
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4443521
+      value: 0.03573012
+      inSlope: 0.4602124
+      outSlope: 0.4602124
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5090896
+      value: 0.10548484
+      inSlope: 0.019169237
+      outSlope: 0.019169237
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.016208667
+    - serializedVersion: 3
+      time: 0.87961316
+      value: 0.20009199
+      inSlope: 1.0992348
+      outSlope: 1.0992348
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.97806776
+      value: 0.37395018
+      inSlope: 1.8805585
+      outSlope: 1.8805585
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33818898
+    - serializedVersion: 3
+      time: 1.0350037
+      value: 0.47374725
+      inSlope: 0.019340366
+      outSlope: 0.019340366
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  colorLevels:
+  - color: {r: 0.09242612, g: 0.20717576, b: 0.6320754, a: 0}
+    threshold: 0
+  - color: {r: 0.035733357, g: 0.5944512, b: 0.6886792, a: 0}
+    threshold: 0.529
+  - color: {r: 0.7264151, g: 0.6916942, b: 0.48998755, a: 0}
+    threshold: 0.594
+  - color: {r: 0.26855642, g: 0.6698113, b: 0.37029463, a: 0}
+    threshold: 0.643
+  - color: {r: 0.06852971, g: 0.41509432, b: 0.15739247, a: 1}
+    threshold: 0.668
+  - color: {r: 0.4716981, g: 0.34139833, b: 0.2202741, a: 0}
+    threshold: 0.756
+  - color: {r: 0.3490566, g: 0.22425756, b: 0.10702208, a: 0}
+    threshold: 0.793
+  - color: {r: 1, g: 1, b: 1, a: 1}
+    threshold: 0.897
+  seed: 18
+  offsets: {x: 81.1, y: -23.1}
+  autoUpdate: 1
+--- !u!114 &6212202170347599342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6212202170347599330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b03eff1cfd0f944a5555fa7b043b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  playerViewDistance: 5
+  chunckSize: 2
