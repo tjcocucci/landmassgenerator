@@ -8,15 +8,15 @@ public class MapDisplay : MonoBehaviour
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
 
-    public void SetTexture(int width, int height, Texture texture) {
+    public void SetTexture(Texture texture) {
         renderTexture.sharedMaterial.SetTexture("_BaseMap", texture);
-        renderTexture.transform.localScale = new Vector3(1, 1, 1);
+        renderTexture.transform.localScale = new Vector3(texture.width, 1, texture.height);
     }
 
-    public void SetMesh(int width, int height, Texture texture, Mesh mesh) {
+    public void SetMesh(Texture texture, Mesh mesh) {
         meshRenderer.sharedMaterial.SetTexture("_BaseMap", texture);
         meshFilter.sharedMesh = mesh;
-        meshFilter.transform.localScale = new Vector3(1, -1, 1);
+        meshFilter.transform.localScale = new Vector3(texture.width, 1, texture.height);
     }
 
 }

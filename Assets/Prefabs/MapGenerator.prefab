@@ -60,13 +60,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aed702af02191644b3a7a44af65d2b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawMode: 2
-  levelOfDetail: 1
-  mapScale: 44.7
+  drawMode: 0
+  editorPreviewLevelOfDetail: 0
+  mapScale: 50
   octaves: 4
-  lacunarity: 3.6
+  lacunarity: 2.34
   persistance: 0.2
-  heightMultiplier: 150
+  heightMultiplier: 50
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -162,5 +162,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   mapMaterial: {fileID: 2100000, guid: fccbe2c293cb14f468e90ea5d108d7ea, type: 2}
-  playerViewDistance: 700
-  chunckSize: 241
+  detailLevels:
+  - lod: 0
+    distanceThershold: 200
+  - lod: 1
+    distanceThershold: 400
+  - lod: 2
+    distanceThershold: 600
