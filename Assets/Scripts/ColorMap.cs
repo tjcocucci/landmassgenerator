@@ -8,7 +8,7 @@ public static class ColorMap
         int width = noiseMap.GetLength(0);
         int height = noiseMap.GetLength(1);
         Color[] colorMap = null;
-        if (drawMode == MapGenerator.DrawMode.Noise) {
+        if (drawMode == MapGenerator.DrawMode.Noise || drawMode == MapGenerator.DrawMode.Falloff) {
             colorMap = GenerateNoiseColorMap(noiseMap);
         } else if (drawMode == MapGenerator.DrawMode.ColorMap) {
             colorMap = GenerateLeveledColorMap(noiseMap, colorLevels);

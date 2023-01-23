@@ -42,21 +42,21 @@ public static class Noise
                 }
             }
         }
-
-        for (int i = 0; i < width; i++) {
-            if (normalizeMode == NormalizeMode.Local) {
+        if (normalizeMode == NormalizeMode.Local) {
+            for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
-                    noiseMap[i, j] = Mathf.InverseLerp(minHeight, maxHeight, noiseMap[i, j]);
+                        noiseMap[i, j] = Mathf.InverseLerp(minHeight, maxHeight, noiseMap[i, j]);
                 }
-            } else {
+            }
+        } else {
+            maxPossibleHeight *= 0.75f;
+            for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
                     float normalizedHeight = (1 + noiseMap[i, j] / maxPossibleHeight) / 2f;
-                    normalizedHeight /= 1.1f;
                     noiseMap[i, j] = Mathf.Clamp(normalizedHeight, 0, float.MaxValue);
                 }
             }
         }
- 
         return noiseMap;
     }
 }

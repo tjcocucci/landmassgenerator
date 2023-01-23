@@ -7,7 +7,7 @@ using System.Threading;
 public class MapGenerator: MonoBehaviour
 {
 
-    public enum DrawMode {Noise, ColorMap, Mesh};
+    public enum DrawMode {Noise, ColorMap, Mesh, Falloff};
     public DrawMode drawMode;
     public Noise.NormalizeMode normalizeMode;
 
@@ -22,6 +22,7 @@ public class MapGenerator: MonoBehaviour
     public float lacunarity;
     [Min(0)]
     public float persistance;
+    public bool falloffEnabled;
 
     public float heightMultiplier;
     public AnimationCurve animationCurve;
@@ -58,19 +59,31 @@ public class MapGenerator: MonoBehaviour
     }
  
     public MapData GenerateMapData (Vector2 center) {
-        float [,] noiseMap = Noise.GenerateNoiseMap(chunkSize, chunkSize, mapScale, seed, octaves, persistance, lacunarity, offsets + center, normalizeMode);
-        Color[] colorMap = ColorMap.GenerateColorMap(noiseMap, colorLevels, drawMode);
-        return new MapData(noiseMap, colorMap);
+        float [,] noiseMap;
+        float [,] falloffMap;
+        Color[] colorMap;
+        falloffMap = FalloffMap.GenerateFalloffMap(chunkSize);
+        noiseMap = Noise.GenerateNoiseMap(chunkSize, chunkSize, mapScale, seed, octaves, persistance, lacunarity, offsets + center, normalizeMode);
+        if (drawMode == DrawMode.Falloff) {
+            colorMap = ColorMap.GenerateColorMap(falloffMap, colorLevels, drawMode);
+            return new MapData(falloffMap, colorMap);
+        } else {
+            if (falloffEnabled) {
+                noiseMap = FalloffMap.MaskMapWithFalloffMap(noiseMap, falloffMap); 
+            }
+            colorMap = ColorMap.GenerateColorMap(noiseMap, colorLevels, drawMode);
+            return new MapData(noiseMap, colorMap);
+        }
     }
 
     public void DisplayMap(float[,] noiseMap, Color[] colorMap) {
         mapDisplay = FindObjectOfType<MapDisplay>();
         int width = noiseMap.GetLength(0);
         int height = noiseMap.GetLength(1);
-
+        
         Texture2D texture = TextureGenerator.TextureFromColorMap (colorMap, width, height);
 
-        if (drawMode == DrawMode.Noise || drawMode == DrawMode.ColorMap) {
+        if (drawMode == DrawMode.Noise || drawMode == DrawMode.ColorMap || drawMode == DrawMode.Falloff ) {
             mapDisplay.SetTexture(texture);
         } else if (drawMode == DrawMode.Mesh) {
             MeshData meshData = MeshGenerator.GenerateMeshData(noiseMap, heightMultiplier, animationCurve, editorPreviewLevelOfDetail);

@@ -104,6 +104,7 @@ public class EndlessTerrain : MonoBehaviour
             meshRenderer.sharedMaterial = mapMaterial;
 
             mesh.transform.position = centerPosition;
+            mesh.transform.localScale = new Vector3(1, -1, 1);
             mesh.transform.parent = parent;
             mesh.SetActive(false);
 
