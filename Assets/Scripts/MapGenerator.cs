@@ -9,6 +9,7 @@ public class MapGenerator: MonoBehaviour
 
     public enum DrawMode {Noise, ColorMap, Mesh};
     public DrawMode drawMode;
+    public Noise.NormalizeMode normalizeMode;
 
     public const int chunkSize = 241;
 
@@ -57,7 +58,7 @@ public class MapGenerator: MonoBehaviour
     }
  
     public MapData GenerateMapData (Vector2 center) {
-        float [,] noiseMap = Noise.GenerateNoiseMap(chunkSize, chunkSize, mapScale, seed, octaves, persistance, lacunarity, offsets + center);
+        float [,] noiseMap = Noise.GenerateNoiseMap(chunkSize, chunkSize, mapScale, seed, octaves, persistance, lacunarity, offsets + center, normalizeMode);
         Color[] colorMap = ColorMap.GenerateColorMap(noiseMap, colorLevels, drawMode);
         return new MapData(noiseMap, colorMap);
     }
@@ -67,7 +68,7 @@ public class MapGenerator: MonoBehaviour
         int width = noiseMap.GetLength(0);
         int height = noiseMap.GetLength(1);
 
-        Texture texture = TextureGenerator.TextureFromColorMap (colorMap, width, height);
+        Texture2D texture = TextureGenerator.TextureFromColorMap (colorMap, width, height);
 
         if (drawMode == DrawMode.Noise || drawMode == DrawMode.ColorMap) {
             mapDisplay.SetTexture(texture);

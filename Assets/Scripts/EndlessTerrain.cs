@@ -24,7 +24,7 @@ public class EndlessTerrain : MonoBehaviour
     }
 
     void Start() {
-        chunkSize = MapGenerator.chunkSize;
+        chunkSize = MapGenerator.chunkSize - 1;
         previousPosition = new Vector2(playerTransform.position.x, playerTransform.position.z);
         sqrViewerDistanceToUpgradeChunks = Mathf.Pow(viewerDistanceToUpgradeChunks, 2);
         playerViewDistance = detailLevels[detailLevels.Length - 1].distanceThershold;
@@ -48,8 +48,8 @@ public class EndlessTerrain : MonoBehaviour
     }
 
     Vector3 CoordToPosition(Vector2Int coords) {
-        float positionX = coords.x * (chunkSize-1);
-        float positionY = coords.y * (chunkSize-1);
+        float positionX = coords.x * (chunkSize);
+        float positionY = coords.y * (chunkSize);
         return new Vector3(positionX, 0, positionY);
     }
 
@@ -118,7 +118,7 @@ public class EndlessTerrain : MonoBehaviour
         void OnMapDataRecieved(MapData mapData) {
             this.mapData = mapData;
             mapDataRecieved = true;
-            Texture texture = TextureGenerator.TextureFromColorMap(mapData.colorMap, MapGenerator.chunkSize, MapGenerator.chunkSize);
+            Texture2D texture = TextureGenerator.TextureFromColorMap(mapData.colorMap, MapGenerator.chunkSize, MapGenerator.chunkSize);
             meshRenderer.material.SetTexture("_BaseMap", texture);
             UpdateTerrainChunk();
         }

@@ -43,6 +43,8 @@ public static class ColorMap
                 for (int k = 0; k < colorLevels.Length; k++) {
                     if(noiseMap[i, j] >= colorLevels[k].threshold) {
                         colorMap[j * width + i] = colorLevels[k].color;
+                    } else {
+                        break;
                     }
                 }
             }
