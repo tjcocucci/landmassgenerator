@@ -87,6 +87,7 @@ public class EndlessTerrain : MonoBehaviour
         public MeshRenderer meshRenderer;
         public MeshCollider meshCollider;
         LODMesh[] lodMeshes;
+        LODMesh collisionLODMesh;
         Bounds bounds;
         LODInfo[] detailLevels;
         MapData mapData;
@@ -113,6 +114,9 @@ public class EndlessTerrain : MonoBehaviour
             lodMeshes = new LODMesh[detailLevels.Length];
             for (int i = 0; i < lodMeshes.Length; i++) {
                 lodMeshes[i] = new LODMesh(detailLevels[i].lod, UpdateTerrainChunk);
+                if (detailLevels[i].useForCollider) {
+                    collisionLODMesh = lodMeshes[i];
+                }
             }
 
             mapGenerator.RequestMapData(new Vector2(centerPosition.x, centerPosition.z), OnMapDataRecieved);
@@ -147,12 +151,17 @@ public class EndlessTerrain : MonoBehaviour
                         if (lodMesh.hasMesh) {
                             previousLODIndex = lodIndex;
                             meshFilter.sharedMesh = lodMesh.mesh;
-                            meshCollider.sharedMesh = lodMesh.mesh;
                         } else if (!lodMesh.hasRequestedData) {
                             lodMesh.RequestMesh(mapData);
                         }
                     }
-
+                    if (lodIndex == 0) {
+                        if (collisionLODMesh.hasMesh) {
+                            meshCollider.sharedMesh = collisionLODMesh.mesh;
+                        } else {
+                            collisionLODMesh.RequestMesh(mapData);
+                        }
+                    }
                 }
 
                 SetVisible(visible);
@@ -193,6 +202,7 @@ public class EndlessTerrain : MonoBehaviour
     public struct LODInfo {
         public int lod;
         public float distanceThershold;
+        public bool useForCollider;
     }
 
 
