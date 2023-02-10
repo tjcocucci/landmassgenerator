@@ -4,24 +4,19 @@ using UnityEngine;
 
 public static class ColorMap
 {
-    public static Color[] GenerateColorMap (float[,] noiseMap, ColorLevel[] colorLevels, MapGenerator.DrawMode drawMode) {
-        int width = noiseMap.GetLength(0);
-        int height = noiseMap.GetLength(1);
+    public static Color[] GenerateColorMap (float[,] noiseMap, ColorLevel[] colorLevels, MapGenerator.DrawMode drawMode, int width, int height) {
         Color[] colorMap = null;
         if (drawMode == MapGenerator.DrawMode.Noise || drawMode == MapGenerator.DrawMode.Falloff) {
-            colorMap = GenerateNoiseColorMap(noiseMap);
+            colorMap = GenerateNoiseColorMap(noiseMap, width, height);
         } else if (drawMode == MapGenerator.DrawMode.ColorMap) {
-            colorMap = GenerateLeveledColorMap(noiseMap, colorLevels);
+            colorMap = GenerateLeveledColorMap(noiseMap, colorLevels, width, height);
         } else if (drawMode == MapGenerator.DrawMode.Mesh) {
-            colorMap = GenerateLeveledColorMap(noiseMap, colorLevels);
+            colorMap = GenerateLeveledColorMap(noiseMap, colorLevels, width, height);
         }
         return colorMap;
     }
 
-    public static Color[] GenerateNoiseColorMap(float[,] noiseMap) {
-        int width = noiseMap.GetLength(0);
-        int height = noiseMap.GetLength(1);
-
+    public static Color[] GenerateNoiseColorMap(float[,] noiseMap, int width, int height) {
         Color[] colorMap = new Color[width*height];
 
         for (int i = 0; i < width; i++) {
@@ -32,10 +27,7 @@ public static class ColorMap
         return colorMap;
     }
 
-    public static Color[] GenerateLeveledColorMap(float[,] noiseMap, ColorLevel[] colorLevels) {
-        int width = noiseMap.GetLength(0);
-        int height = noiseMap.GetLength(1);
-
+    public static Color[] GenerateLeveledColorMap(float[,] noiseMap, ColorLevel[] colorLevels, int width, int height) {
         Color[] colorMap = new Color[width*height];
 
         for (int i = 0; i < width; i++) {
