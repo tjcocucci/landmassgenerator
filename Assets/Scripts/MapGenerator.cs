@@ -9,48 +9,30 @@ public class MapGenerator: MonoBehaviour
 
     public enum DrawMode {Noise, ColorMap, Mesh, Falloff};
     public DrawMode drawMode;
-    // public Noise.NormalizeMode normalizeMode;
-
-    // public bool useFlatShading;
 
     [Range(0, 6)]
     public int editorPreviewLevelOfDetail;
-    // public float mapScale;
-    // [Min(1)]
-    // public int octaves;
-    // [Min(0)]
-    // public float lacunarity;
-    // [Min(0)]
-    // public float persistance;
-    // public bool falloffEnabled;
-
-    // public float heightMultiplier;
-    // public AnimationCurve animationCurve;
 
     public ColorLevel[] colorLevels;
-
-    // public int seed;
-    // public Vector2 offsets;
 
     public NoiseData noiseData;
     public TerrainData terrainData;
 
     public bool autoUpdate;
-    static MapGenerator instance;
+    public static MapGenerator instance;
 
     public MapDisplay mapDisplay;
     Queue<ThreadInfo<MapData>> mapDataQueue = new Queue<ThreadInfo<MapData>>();
     Queue<ThreadInfo<MeshData>> meshDataQueue = new Queue<ThreadInfo<MeshData>>();
 
-    public int chunkSize = 239;
-    // public static int chunkSize {
-    //     get {
-    //             if (instance == null) {
-    //                 instance = FindObjectOfType<MapGenerator>();
-    //             }
-    //             return instance.terrainData.useFlatShading ? 95 : 239;
-    //         }
-    // }
+    public int chunkSize {
+        get {
+                if (instance == null) {
+                    instance = FindObjectOfType<MapGenerator>();
+                }
+                return instance.terrainData.useFlatShading ? 95 : 239;
+            }
+    }
 
     public void Update() {
         while (mapDataQueue.Count > 0) {
