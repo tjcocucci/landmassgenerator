@@ -24,7 +24,7 @@ public class EndlessTerrain : MonoBehaviour
     }
 
     void Start() {
-        chunkSize = MapGenerator.chunkSize - 1;
+        chunkSize = mapGenerator.chunkSize - 1;
         previousPosition = new Vector2(playerTransform.position.x, playerTransform.position.z);
         sqrViewerDistanceToUpgradeChunks = Mathf.Pow(viewerDistanceToUpgradeChunks, 2);
         playerViewDistance = detailLevels[detailLevels.Length - 1].distanceThershold;

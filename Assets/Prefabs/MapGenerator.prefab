@@ -55,78 +55,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6212202170347599330}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3aed702af02191644b3a7a44af65d2b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   drawMode: 0
   editorPreviewLevelOfDetail: 0
-  mapScale: 50
-  octaves: 4
-  lacunarity: 2.34
-  persistance: 0.2
-  heightMultiplier: 50
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.4443521
-      value: 0.03573012
-      inSlope: 0.4602124
-      outSlope: 0.4602124
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5090896
-      value: 0.10548484
-      inSlope: 0.019169237
-      outSlope: 0.019169237
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.016208667
-    - serializedVersion: 3
-      time: 0.87961316
-      value: 0.20009199
-      inSlope: 1.0992348
-      outSlope: 1.0992348
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.97806776
-      value: 0.37395018
-      inSlope: 1.8805585
-      outSlope: 1.8805585
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33818898
-    - serializedVersion: 3
-      time: 1.0350037
-      value: 0.47374725
-      inSlope: 0.019340366
-      outSlope: 0.019340366
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   colorLevels:
   - color: {r: 0.09242612, g: 0.20717576, b: 0.6320754, a: 0}
     threshold: 0
@@ -144,10 +79,11 @@ MonoBehaviour:
     threshold: 0.793
   - color: {r: 1, g: 1, b: 1, a: 1}
     threshold: 0.897
-  seed: 18
-  offsets: {x: 81.1, y: -23.1}
+  noiseData: {fileID: 0}
+  terrainData: {fileID: 0}
   autoUpdate: 1
   mapDisplay: {fileID: 6212202170347599340}
+  chunkSize: 239
 --- !u!114 &6212202170347599342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +91,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6212202170347599330}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34b03eff1cfd0f944a5555fa7b043b68, type: 3}
   m_Name: 
@@ -165,7 +101,11 @@ MonoBehaviour:
   detailLevels:
   - lod: 0
     distanceThershold: 200
+    useForCollider: 0
   - lod: 1
     distanceThershold: 400
+    useForCollider: 0
   - lod: 2
     distanceThershold: 600
+    useForCollider: 0
+  viewerDistanceToUpgradeChunks: 25
