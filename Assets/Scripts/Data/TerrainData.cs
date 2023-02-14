@@ -10,4 +10,17 @@ public class TerrainData : UpdatableData
     public bool falloffEnabled;
     public float heightMultiplier;
     public AnimationCurve animationCurve;
+
+    public float minHeight {
+        get {
+            return animationCurve.Evaluate(0) * heightMultiplier;
+        }
+    }
+
+    public float maxHeight {
+        get {
+            return animationCurve.Evaluate(1) * heightMultiplier;
+        }
+    }
+
 }

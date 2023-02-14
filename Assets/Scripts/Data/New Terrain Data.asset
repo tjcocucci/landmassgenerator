@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c429ae8302e0b1f418fc54e235090fa7, type: 3}
   m_Name: New Terrain Data
   m_EditorClassIdentifier: 
-  autoUpdate: 1
+  autoUpdate: 0
   mapScale: 100
   useFlatShading: 0
   falloffEnabled: 0
-  heightMultiplier: 45.49
+  heightMultiplier: 45
   animationCurve:
     serializedVersion: 2
     m_Curve:

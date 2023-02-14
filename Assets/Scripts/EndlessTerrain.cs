@@ -127,8 +127,8 @@ public class EndlessTerrain : MonoBehaviour
             mapDataRecieved = true;
             int width = mapData.noiseMap.GetLength(0);
             int height = mapData.noiseMap.GetLength(1);
-            Texture2D texture = TextureGenerator.TextureFromColorMap(mapData.colorMap, width, height);
-            meshRenderer.material.SetTexture("_BaseMap", texture);
+            // Texture2D texture = TextureGenerator.TextureFromColorMap(mapData.colorMap, width, height);
+            // meshRenderer.material.SetTexture("_BaseMap", texture);
             UpdateTerrainChunk();
         }
 
