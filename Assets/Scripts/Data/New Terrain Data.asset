@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c429ae8302e0b1f418fc54e235090fa7, type: 3}
   m_Name: New Terrain Data
   m_EditorClassIdentifier: 
-  autoUpdate: 0
+  autoUpdate: 1
   mapScale: 100
   useFlatShading: 0
   falloffEnabled: 0
@@ -30,8 +30,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.52999055
-      value: 0.15746652
+      time: 0.6439432
+      value: 0.19399606
       inSlope: 1.0827209
       outSlope: 1.0827209
       tangentMode: 0
@@ -39,13 +39,13 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.11695008
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
+      time: 1.1136984
+      value: 1.1504111
+      inSlope: 0.60603756
+      outSlope: 0.60603756
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.2715887
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

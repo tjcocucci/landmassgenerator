@@ -13,20 +13,45 @@ MonoBehaviour:
   m_Name: New Texture Data
   m_EditorClassIdentifier: 
   autoUpdate: 1
+  textureStrength: 0.165
   levels:
-  - color: {r: 0, g: 0.06005001, b: 1, a: 1}
+  - texture: {fileID: 2800000, guid: 747222b62a87f71458e5003834cf4a27, type: 3}
+    textureScale: 11
+    color: {r: 0, g: 0.0072422684, b: 0.30980393, a: 1}
     baseHeight: 0
-  - color: {r: 0, g: 0.4479885, b: 1, a: 1}
-    baseHeight: 0.149
-  - color: {r: 0.9622642, g: 0.9063509, b: 0.5492168, a: 1}
-    baseHeight: 0.175
-  - color: {r: 0.32835764, g: 0.7075472, b: 0, a: 1}
-    baseHeight: 0.228
-  - color: {r: 0.04877771, g: 0.3301887, b: 0, a: 1}
-    baseHeight: 0.27
-  - color: {r: 0.4811321, g: 0.37882307, b: 0.23375759, a: 1}
-    baseHeight: 0.371
-  - color: {r: 0.31132078, g: 0.22102004, b: 0.09251513, a: 1}
-    baseHeight: 0.449
-  - color: {r: 1, g: 1, b: 1, a: 1}
-    baseHeight: 0.541
+    blend: 0.049
+  - texture: {fileID: 2800000, guid: 747222b62a87f71458e5003834cf4a27, type: 3}
+    textureScale: 11
+    color: {r: 0, g: 0.4479885, b: 1, a: 1}
+    baseHeight: 0.14
+    blend: 0.032
+  - texture: {fileID: 2800000, guid: 9fef1d8a7fb6b164a9f2603377b361e9, type: 3}
+    textureScale: 11
+    color: {r: 0.9245283, g: 0.9016973, b: 0.53640085, a: 1}
+    baseHeight: 0.197
+    blend: 0.069
+  - texture: {fileID: 2800000, guid: 98093b952bcb16b4fb099d81c5e3349a, type: 3}
+    textureScale: 11
+    color: {r: 0.30523938, g: 0.6320754, b: 0.15801886, a: 1}
+    baseHeight: 0.22
+    blend: 0.069
+  - texture: {fileID: 2800000, guid: 98093b952bcb16b4fb099d81c5e3349a, type: 3}
+    textureScale: 11
+    color: {r: 0.13913292, g: 0.3207547, b: 0.055980776, a: 1}
+    baseHeight: 0.261
+    blend: 0.059
+  - texture: {fileID: 2800000, guid: 22fa5a951dee0e843bc1a8f6eeb58728, type: 3}
+    textureScale: 11
+    color: {r: 0.4528302, g: 0.41932413, b: 0.29263082, a: 1}
+    baseHeight: 0.332
+    blend: 0.038
+  - texture: {fileID: 2800000, guid: 5d6992ab5a609ab4aa589a7fc012740c, type: 3}
+    textureScale: 11
+    color: {r: 0.31132078, g: 0.24451278, b: 0.13656996, a: 1}
+    baseHeight: 0.412
+    blend: 0.043
+  - texture: {fileID: 2800000, guid: a6364589e679df3418b996f3bd3da08f, type: 3}
+    textureScale: 11
+    color: {r: 1, g: 1, b: 1, a: 1}
+    baseHeight: 0.56
+    blend: 0.048

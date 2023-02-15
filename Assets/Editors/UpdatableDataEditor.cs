@@ -9,12 +9,10 @@ public class UpdatableDataEditor : Editor
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
         UpdatableData data = (UpdatableData) target;
-        if (data.autoUpdate) {
-            data.NotifyValuesUpdated();
-        }
-        
+       
         if(GUILayout.Button("Generate Map")) {
             data.NotifyValuesUpdated();
+            EditorUtility.SetDirty(target);
         }
     }
 }
